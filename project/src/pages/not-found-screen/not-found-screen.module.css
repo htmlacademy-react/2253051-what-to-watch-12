@@ -1,0 +1,29 @@
+.notFoundPage {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: black;
+  height: 100vh;
+}
+
+.notFoundPage__button {
+  box-sizing: border-box;
+  padding: 10px;
+  background-color: #c9b37e;
+  border: none;
+}
+
+.notFoundPage__button :hover {
+  opacity: 0.7;
+}
+
+.notFoundPage__title {
+  margin: 200px 0 70px;
+  color:#c9b37e
+}
+
+.notFoundPage__link {
+  text-decoration: none;
+  color: black;
+}
