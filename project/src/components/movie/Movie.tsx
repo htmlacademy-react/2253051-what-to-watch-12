@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { MovieProps } from '../../types/movie/movie';
 import MovieImage from '../movie-image/movie-image';
 import VideoCard from '../video-card/video-card';
+import { Link } from 'react-router-dom';
 
 type Props = {
   movie: MovieProps;
@@ -41,9 +42,11 @@ function Movie({ movie }: Props): JSX.Element {
 
   return (
     <article className="small-film-card catalog__films-card" onMouseOver={mouseOverHandler} onMouseLeave={mouseLeaveHandler}>
-      {!activeVideo ?
-        <MovieImage movie={movie} movieId={movieId} /> :
-        <VideoCard movie={movie} movieId={movieId} />}
+      <Link to={movieId} className='small-film-card__link'>
+        {!activeVideo ?
+          <MovieImage movie={movie} movieId={movieId} /> :
+          <VideoCard movie={movie} movieId={movieId} />}
+      </Link>
     </article>
   );
 }

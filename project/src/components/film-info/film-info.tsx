@@ -14,8 +14,7 @@ type Props = {
 function FilmInfo({ movie }: Props): JSX.Element {
   const params = useParams();
   const [activeLink, setActiveLink] = useState(params.info || 'overview');
-
-  const movieInformation = () => {
+  const showMovieInformation = () => {
     switch (activeLink) {
       case 'overview':
         return <Overview movie={movie} />;
@@ -37,7 +36,7 @@ function FilmInfo({ movie }: Props): JSX.Element {
           ))}
         </ul>
       </nav>
-      {movieInformation()}
+      {showMovieInformation()}
     </div>
   );
 }

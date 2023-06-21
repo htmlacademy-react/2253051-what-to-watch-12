@@ -10,6 +10,8 @@ function AddReviewForm(): JSX.Element {
   const dispatch = useAppDispatch();
   const movieId = Number(useParams().id);
   const postStatus = useAppSelector(getReviewStatus);
+  const minCharacters = 50;
+  const maxCharacters = 400;
   const [formData, setFormData] = useState({
     rating: 0,
     comment: '',
@@ -57,9 +59,9 @@ function AddReviewForm(): JSX.Element {
       </div>
       <p className="reviews__description">
         To post review please make sure to set <b>rating </b>
-        and describe the film with at least <b>50 characters</b>.
-        {(formData.comment && formData.comment.length < 51) && <b> Сharacters left: {51 - formData.comment.length}</b>}
-        {(formData.comment && formData.comment.length >= 400) && <b > Max 400 Сharacters</b>}
+        and describe the film with at least <b>{minCharacters} characters</b>.
+        {(formData.comment && formData.comment.length < minCharacters + 1) && <b> Сharacters left: {minCharacters + 1 - formData.comment.length}</b>}
+        {(formData.comment && formData.comment.length >= maxCharacters) && <b > Max {maxCharacters} Сharacters</b>}
       </p>
       {postStatus === Status.Failed && <p>Something gooing wrong...</p>}
     </form>

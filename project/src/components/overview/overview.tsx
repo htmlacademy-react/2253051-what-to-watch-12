@@ -20,7 +20,7 @@ function Overview({ movie }: Props) {
       <div className="film-card__text">
         <p>{movie.description} </p>
         <p className="film-card__director">
-          <strong>{movie.director}</strong>
+          <strong>Director: {movie.director}</strong>
         </p>
         <p className="film-card__starring">
           <strong>

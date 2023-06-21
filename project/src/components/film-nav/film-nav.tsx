@@ -10,7 +10,7 @@ type Props = {
 function FilmNav({ name, setActiveLink, activeLink}: Props) {
   function handleClick(event: MouseEvent<HTMLElement>) {
     event.preventDefault();
-    setActiveLink(name);
+    setActiveLink(name.toLowerCase());
   }
 
   const className = `film-nav__item ${activeLink.toLowerCase() === name.toLowerCase() ? 'film-nav__item--active' : ''}`;

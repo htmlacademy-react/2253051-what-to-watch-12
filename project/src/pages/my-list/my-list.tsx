@@ -9,7 +9,6 @@ import { Status } from '../../constants';
 function MyList(): JSX.Element {
   const movies = useAppSelector(getFavoritesMovies);
   const moviesStatus = useAppSelector(getFavoritesMoviesStatus);
-
   return (
     <div className="user-page">
       <Header>

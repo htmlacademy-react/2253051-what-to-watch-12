@@ -37,7 +37,7 @@ function Player(): JSX.Element {
     navigate(-1);
   }
 
-  function stopVideo() {
+  function handleStopVideo() {
     if (playMovie) {
       ref.current?.pause();
       setIsPlayMovie(false);
@@ -68,10 +68,10 @@ function Player(): JSX.Element {
             <progress className="player__progress" value={timeLeftPr} max='100'></progress>
             <div className="player__toggler" style={{ left: `${timeLeftPr}%` }}>Toggler</div>
           </div>
-          <div className="player__time-value">{formatTime(timeLeft)}</div>
+          <div className="player__time-value">- {formatTime(timeLeft)}</div>
         </div>
         <div className="player__controls-row">
-          <button type="button" className="player__play" onClick={stopVideo}>
+          <button type="button" className="player__play" onClick={handleStopVideo}>
             {!playMovie ?
               <>
                 <svg viewBox="0 0 19 19" width="19" height="19">
@@ -87,7 +87,7 @@ function Player(): JSX.Element {
               </>}
           </button>
 
-          <div className="player__name">Transpotting</div>
+          <div className="player__name">{movie.name}</div>
           <button type="button" className="player__full-screen" onClick={handleFullScreenClick}>
             <svg viewBox="0 0 27 27" width="27" height="27">
               <use xlinkHref="#full-screen"></use>

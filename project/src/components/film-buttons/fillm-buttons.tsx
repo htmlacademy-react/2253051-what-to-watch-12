@@ -51,7 +51,7 @@ function FilmButtons({ movie, children }: Props) {
             <use xlinkHref="#add"></use>
           </svg>}
         <span>My list</span>
-        <span className="film-card__count">{favMovies.length}</span>
+        {authorizationStatus === AuthorizationStatus.Auth && <span className="film-card__count">{favMovies.length}</span>}
       </button>
       {children}
     </div>

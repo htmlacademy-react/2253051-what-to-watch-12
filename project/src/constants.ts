@@ -1,5 +1,3 @@
-export const GENRES = ['All genres'];
-
 export enum AppRoute {
   Login = '/login',
   Main = '/',
