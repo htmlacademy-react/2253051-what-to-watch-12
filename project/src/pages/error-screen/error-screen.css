@@ -1,0 +1,13 @@
+.error-screen {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: black;
+}
+
+.error-screen__title {
+  margin: 50px 0;
+  color: #dfcf77;
+  font-size: 20px;
+}

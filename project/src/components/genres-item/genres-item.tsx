@@ -1,4 +1,4 @@
-import { MouseEvent } from 'react';
+import { MouseEvent, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 type Props = {
@@ -7,8 +7,14 @@ type Props = {
   activeLink: string;
 }
 
+function getClassName(isGenreActive: boolean) {
+  return `catalog__genres-item ${isGenreActive ? 'catalog__genres-item--active' : ''}`;
+}
+
 function GenreItem({ genre, handleChangeGenre, activeLink }: Props) {
-  const className = `catalog__genres-item ${activeLink === genre ? 'catalog__genres-item--active' : ''}`;
+  const isGenreActive = activeLink === genre;
+  const className = useMemo(() => getClassName(isGenreActive), [isGenreActive]);
+
   function handleClick(e: MouseEvent<HTMLElement>) {
     e.preventDefault();
     handleChangeGenre(genre);

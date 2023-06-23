@@ -12,3 +12,4 @@ export const getActiveMovie = (state: State): MovieProps | null => state[NameSpa
 export const getActiveMovieStatus = (state: State): string => state[NameSpace.Film].statusFilm;
 
 export const getPromoMovie = (state: State): MovieProps | null => state[NameSpace.Film].movie;
+export const getPromoMovieStatus = (state: State): string => state[NameSpace.Film].status;

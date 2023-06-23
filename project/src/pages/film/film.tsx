@@ -9,12 +9,15 @@ import SortedMoviesList from '../../components/sorted-movies-list/sorted-movies-
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import LoadingScreen from '../loading-screen/loading-screen';
 import { Status } from '../../constants';
+import ErrorScreen from '../error-screen/error-screen';
+import NotFoundScreen from '../not-found-screen/not-found-screen';
 
 function Film(): JSX.Element {
   const dispatch = useAppDispatch();
   const movies = useAppSelector(getSimilarMovies);
-  const moviesStatus = useAppSelector(getSimilarMovieStatus);
+  const similarMoviesStatus = useAppSelector(getSimilarMovieStatus);
   const activeMovie = useAppSelector(getActiveMovie);
+  const movieStatus = useAppSelector(getActiveMovieStatus);
   const sortedMovies = movies.filter((movie) => movie.id !== activeMovie?.id).slice(0, 4);
 
   const movieId = Number(useParams().id);
@@ -25,12 +28,15 @@ function Film(): JSX.Element {
     dispatch(fetchSimilarMoviesAction(movieId));
   }, [movieId, dispatch]);
 
-  const movieStatus = useAppSelector(getActiveMovieStatus);
   const movie = useAppSelector(getActiveMovie);
 
-  if (movie === null || movieStatus === Status.Idle || movieStatus === Status.Loading) {
+  if (movieStatus === Status.Idle || movieStatus === Status.Loading) {
     return (
       <LoadingScreen />
+    );
+  } else if (movie === null) {
+    return(
+      <NotFoundScreen />
     );
   }
 
@@ -40,7 +46,7 @@ function Film(): JSX.Element {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          {moviesStatus === 'Loading' ? <LoadingScreen /> : <SortedMoviesList sortedMovies={sortedMovies} />}
+          {similarMoviesStatus === Status.Failed ? <ErrorScreen /> : <SortedMoviesList sortedMovies={sortedMovies} />}
         </section>
         <Footer />
       </div>

@@ -23,10 +23,14 @@ function Player(): JSX.Element {
   }, [movieId, dispatch]);
 
   useEffect(() => {
-    if (ref.current) {
-      ref.current.play();
-      setIsPlayMovie(true);
-    }
+    const timer = setTimeout(() => {
+      if (ref.current) {
+        ref.current.play();
+        setIsPlayMovie(true);
+      }
+    }, 500);
+    return () => clearTimeout(timer);
+
   }, []);
 
   if (movie === null || movieStatus === Status.Idle || movieStatus === Status.Loading) {

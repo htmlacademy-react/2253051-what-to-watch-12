@@ -8,6 +8,7 @@ type Props = {
 }
 
 function FilmCard({ movie }: Props): JSX.Element {
+
   return (
     <section className="film-card film-card--full" style={{ background: movie.backgroundColor }}>
       <div className="film-card__hero">

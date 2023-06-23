@@ -26,19 +26,14 @@ function AddReviewForm(): JSX.Element {
   function handleSubmit(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault();
     dispatch(postMovieReview(formData));
-    setFormData({
-      rating: 0,
-      comment: '',
-      movieId
-    });
   }
 
   return (
     <form action="#" className="add-review__form" onSubmit={handleSubmit}>
       <div className="rating">
-        <div className="rating__stars">
+        <div className="rating__stars" >
           {STARS.map((star) => (
-            <StarsInput key={star.id} name={star.name} starId={star.id} value={formData.rating} onChange={handleChange} />
+            <StarsInput key={star.id} name={star.name} starId={star.id} value={formData.rating} onChange={handleChange} postStatus={postStatus}/>
           ))}
         </div>
       </div>
@@ -47,11 +42,12 @@ function AddReviewForm(): JSX.Element {
         <textarea className="add-review__textarea" id="comment"
           name="comment" value={formData.comment}
           onChange={handleChange}
+          disabled={postStatus === Status.Loading}
         />
         <div className="add-review__submit">
           <button className="add-review__btn" type="submit"
             disabled={(formData.comment.length <= 50 ||
-              formData.rating === 0 || formData.comment.length >= 400 || postStatus === Status.Loading || postStatus === Status.Failed
+              formData.rating === 0 || formData.comment.length >= 400 || postStatus === Status.Loading
             )}
           >{postStatus === Status.Loading ? 'Loading' : 'Post'}
           </button>
